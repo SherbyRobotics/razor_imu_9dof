@@ -8,8 +8,7 @@ import sys
 import numpy as np
 import time
 
-
-from image_setup.msg import ImuStates
+from image_treatment.msg import ImuStates
 from sensor_msgs.msg import Imu
 from tf.transformations import quaternion_from_euler
 from dynamic_reconfigure.server import Server
