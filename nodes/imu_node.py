@@ -232,6 +232,8 @@ while not rospy.is_shutdown():
         if yaw_deg < -180.0:
             yaw_deg = yaw_deg + 360.0
         yaw = yaw_deg*degrees2rad
+        imuMsg.orientation.z = yaw*(180.0/math.pi)
+
         #in AHRS firmware y axis points right, in ROS y axis points left (see REP 103)
         pitch = -float(words[1])*degrees2rad
         roll = float(words[2])*degrees2rad
@@ -252,7 +254,7 @@ while not rospy.is_shutdown():
     q = quaternion_from_euler(roll,pitch,yaw)
     imuMsg.orientation.x = q[0]
     imuMsg.orientation.y = q[1]
-    imuMsg.orientation.z = q[2]
+    #imuMsg.orientation.z = q[2]
     imuMsg.orientation.w = q[3]
     imuMsg.header.stamp= rospy.Time.now()
     imuMsg.header.frame_id = 'base_imu_link'

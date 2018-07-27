@@ -3,4 +3,6 @@
   <node pkg="razor_imu_9dof" type="imu_node.py" name="imu_node" output="screen">
     <rosparam file="$(arg razor_config_file)" command="load"/>
   </node>
+  <node pkg="razor_imu_9dof" type="IMU_node.py" name="IMU_treatments">
+  </node>
 </launch>
