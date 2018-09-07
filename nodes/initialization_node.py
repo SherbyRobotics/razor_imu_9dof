@@ -8,7 +8,7 @@ import sys
 import numpy as np
 import time
 
-from image_treatment.msg import ImuStates
+from razor_imu_9dof.msg import ImuStates
 from sensor_msgs.msg import Imu
 from tf.transformations import quaternion_from_euler
 from dynamic_reconfigure.server import Server
@@ -29,7 +29,7 @@ class Read_IMU:
      self.t_0 = rospy.get_rostime()
 
   def callback(self,imu):
-    try:
+
       t_duration = imu.header.stamp - self.t_0
       t_nsecs = int(t_duration.nsecs)
       
@@ -48,9 +48,6 @@ class Read_IMU:
       msg.state_accy = (imu.linear_acceleration.y - init_acc_y)
       msg.state_theta = (imu.orientation.z - init_theta)
       self.imu_pub.publish(msg)
-      
-    except KeyboardInterrupt:
-      print("Shutting down")
 
 #######################################################################
       
