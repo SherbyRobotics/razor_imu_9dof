@@ -19,9 +19,6 @@ find_package(catkin REQUIRED COMPONENTS
  )
 
 
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
 
 generate_dynamic_reconfigure_options(cfg/imu.cfg)
 
